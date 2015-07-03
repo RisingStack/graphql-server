@@ -4,6 +4,8 @@
   "description": "GraphQL server with Mongoose (MongoDB) and Node.js",
   "main": "index.js",
   "scripts": {
+    "start": "node src/server/index.js",
+    "client": "node src/client/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "RisingStack",
