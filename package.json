@@ -21,9 +21,7 @@
     "superagent": "^1.2.0"
   },
   "devDependencies": {
-    "chai": "^3.0.0",
-    "chai-as-promised": "^5.1.0",
-    "chai-subset": "^1.0.1",
+    "chai": "^3.0.0",    
     "co-mocha": "^1.1.2",
     "co-supertest": "0.0.10",
     "mocha": "^2.2.5",
