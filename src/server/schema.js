@@ -8,6 +8,19 @@ import {
 
 import User from './user';
 
+/**
+ * generate projection object for mongoose
+ * @param  {Object} fieldASTs
+ * @return {Project}
+ */
+function getProjection (fieldASTs) {
+  return fieldASTs.selectionSet.selections.reduce((projections, selection) => {
+    projections[selection.name.value] = 1;
+
+    return projections;
+  }, {});
+}
+
 var userType = new GraphQLObjectType({
   name: 'User',
   description: 'User creator',
@@ -23,12 +36,13 @@ var userType = new GraphQLObjectType({
     friends: {
       type: new GraphQLList(userType),
       description: 'The friends of the user, or an empty list if they have none.',
-      resolve: (user) => {
+      resolve: (user, params, source, fieldASTs) => {
+        var projections = getProjection(fieldASTs);
         return User.find({
           _id: {
             $in: user.friends
           }
-        });
+        }, projections);
       },
     }
   })
@@ -52,8 +66,9 @@ var schema = new GraphQLSchema({
             type: new GraphQLNonNull(GraphQLString)
           }
         },
-        resolve: (root, {id}) => {
-          return User.findById(id);
+        resolve: (root, {id}, source, fieldASTs) => {
+          var projections = getProjection(fieldASTs);
+          return User.findById(id, projections);
         }
       }
     }
