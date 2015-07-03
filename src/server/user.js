@@ -1,4 +1,5 @@
 import {Schema, model} from 'mongoose';
+import mongoose from 'mongoose';
 
 var UserSchema = new Schema({
   name: {
@@ -10,4 +11,6 @@ var UserSchema = new Schema({
   }]
 });
 
-export default model('User', UserSchema);
+var User = model.call(mongoose, 'User', UserSchema);
+
+export default User;

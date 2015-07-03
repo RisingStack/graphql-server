@@ -18,4 +18,6 @@ request
   })
   .end(function (err, res) {
     console.log(err || res.body);
+
+    console.log('friends', res.body.data.user.friends);
   });

@@ -7,7 +7,7 @@ import schema from './schema';
 
 let port = process.env.PORT || 3000;
 let routes = new Router();
-let app = koa();
+var app = koa();
 
 mongoose.connect('mongodb://localhost/graphql');
 

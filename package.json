@@ -1,19 +1,21 @@
 {
   "name": "grapql-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "GraphQL server with Mongoose (MongoDB) and Node.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "RisingStack",
   "license": "ISC",
   "dependencies": {
-    "babel": "^5.6.14",    
+    "babel": "^5.6.14",
+    "babel-core": "^5.6.15",
     "co-body": "^2.0.0",
     "graphql": "^0.1.0",
     "koa": "^0.21.0",
     "koa-router": "^5.1.1",
-    "mongoose": "^4.0.6"
+    "mongoose": "^4.0.6",
+    "superagent": "^1.2.0"
   }
 }
