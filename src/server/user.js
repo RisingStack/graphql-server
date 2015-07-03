@@ -1,16 +1,15 @@
-import {Schema, model} from 'mongoose';
 import mongoose from 'mongoose';
 
-var UserSchema = new Schema({
+var UserSchema = new mongoose.Schema({
   name: {
     type: String
   },
   friends: [{
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }]
 });
 
-var User = model.call(mongoose, 'User', UserSchema);
+var User = mongoose.model('User', UserSchema);
 
 export default User;

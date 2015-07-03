@@ -40,7 +40,8 @@ var userType = new GraphQLObjectType({
         var projections = getProjection(fieldASTs);
         return User.find({
           _id: {
-            $in: user.friends
+            // to make it easily testable
+            $in: user.friends.map((id) => id.toString())
           }
         }, projections);
       },

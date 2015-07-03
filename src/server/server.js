@@ -9,7 +9,9 @@ let port = process.env.PORT || 3000;
 let routes = new Router();
 var app = koa();
 
-mongoose.connect('mongodb://localhost/graphql');
+if (process.env.NODE_ENV !== 'test') {
+  mongoose.connect('mongodb://localhost/graphql');
+}
 
 routes.post('/data', function* () {
   var body = yield bodyParser.json(this);

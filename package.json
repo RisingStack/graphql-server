@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/server/index.js",
     "client": "node src/client/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=test mocha --compilers js:babel/register --require co-mocha $(find src -name \"*.spec.js\")"
   },
   "author": "RisingStack",
   "license": "ISC",
@@ -19,5 +19,16 @@
     "koa-router": "^5.1.1",
     "mongoose": "^4.0.6",
     "superagent": "^1.2.0"
+  },
+  "devDependencies": {
+    "chai": "^3.0.0",
+    "chai-as-promised": "^5.1.0",
+    "chai-subset": "^1.0.1",
+    "co-mocha": "^1.1.2",
+    "co-supertest": "0.0.10",
+    "mocha": "^2.2.5",
+    "sinon": "^1.15.4",
+    "sinon-chai": "^2.8.0",
+    "supertest": "^1.0.1"
   }
 }
