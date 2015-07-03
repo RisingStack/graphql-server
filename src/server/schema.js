@@ -76,4 +76,5 @@ var schema = new GraphQLSchema({
   })
 });
 
+export var getProjection;
 export default schema;
