@@ -1,6 +1,5 @@
 import koa from 'koa';
 import Router from 'koa-router';
-import bodyParser from 'co-body';
 import mongoose from 'mongoose';
 import {graphql} from 'graphql';
 import schema from './schema';
@@ -13,10 +12,10 @@ if (process.env.NODE_ENV !== 'test') {
   mongoose.connect('mongodb://localhost/graphql');
 }
 
-routes.post('/data', function* () {
-  var body = yield bodyParser.json(this);
+routes.get('/data', function* () {
+  var query = this.query.query;
 
-  this.body = yield graphql(schema, body.query);
+  this.body = yield graphql(schema, query);
 });
 
 app.use(routes.middleware());

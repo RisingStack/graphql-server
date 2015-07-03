@@ -16,8 +16,8 @@ describe('graphql request', function () {
     var findByIdStub = this.sandbox.stub(User, 'findById').returnsWithResolve(user);
 
     var resp = yield request(server.listen())
-      .post('/data')
-      .send({
+      .get('/data')
+      .query({
         query: `
         {
           user(id: "${user._id}") {
@@ -61,8 +61,8 @@ describe('graphql request', function () {
     this.sandbox.stub(User, 'findById').returnsWithResolve(user);
 
     var resp = yield request(server.listen())
-      .post('/data')
-      .send({
+      .get('/data')
+      .query({
         query: `
         {
           user(id: "${user._id}") {

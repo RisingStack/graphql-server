@@ -12,8 +12,8 @@ var query = `{
 }`;
 
 request
-  .post('http://localhost:3000/data')
-  .send({
+  .get('http://localhost:3000/data')
+  .query({
     query: query
   })
   .end(function (err, res) {

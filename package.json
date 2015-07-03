@@ -13,7 +13,6 @@
   "dependencies": {
     "babel": "^5.6.14",
     "babel-core": "^5.6.15",
-    "co-body": "^2.0.0",
     "graphql": "^0.1.0",
     "koa": "^0.21.0",
     "koa-router": "^5.1.1",
@@ -21,7 +20,7 @@
     "superagent": "^1.2.0"
   },
   "devDependencies": {
-    "chai": "^3.0.0",    
+    "chai": "^3.0.0",
     "co-mocha": "^1.1.2",
     "co-supertest": "0.0.10",
     "mocha": "^2.2.5",
