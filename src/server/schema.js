@@ -80,12 +80,12 @@ var schema = new GraphQLSchema({
   mutation: new GraphQLObjectType({
     name: 'Mutation',
     fields: {
-      user: {
+      updateUser: {
         type: userType,
         args: {
           id: {
             name: 'id',
-            type: GraphQLString
+            type: new GraphQLNonNull(GraphQLString)
           },
           name: {
             name: 'name',

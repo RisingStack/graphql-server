@@ -7,20 +7,24 @@ var names = ['Doe', 'Smith', 'Winston', 'Lee', 'Foo', 'Bar'];
 var name = names[Math.floor(Math.random() * names.length)];
 
 request
-  .get('http://localhost:3000/data')
-  .query({
+  .post('http://localhost:3000/data')
+  .send({
     query: `
-      mutation M {
-        user(id: "${userId}" name: "John ${name}") {
+    mutation M($userId: String! $name: String!) {
+      updateUser(id: $userId name: $name) {
+        name
+        friends {
           name
-          friends {
-            name
-          }
         }
       }
-    `
+    }
+    `,
+    params: {
+      userId: userId,
+      name: name
+    }
   })
   .end(function (err, res) {
     debug(err || res.body);
-    debug('friends', res.body.data.user.friends);
+    debug('friends', res.body.data.updateUser.friends);
   });

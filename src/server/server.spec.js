@@ -115,22 +115,26 @@ describe('graphql', function() {
 
       var findAndUpdateStub = this.sandbox.stub(User, 'update',
         function() {
-          user.name = 'Smith Doe';
+          user.name = 'John Smith';
           return Promise.resolve(user);
         });
 
       this.sandbox.stub(User, 'findById').returnsWithResolve(user);
 
       var resp = yield request(server.listen())
-        .get('/data')
-        .query({
+        .post('/data')
+        .send({
           query: `
-          mutation M {
-            user(id: "${user._id}" name: "Smith Doe") {
+          mutation M($userId: String! $name: String!) {
+            updateUser(id: $userId name: $name) {
               name
             }
           }
-          `
+          `,
+          params: {
+            userId: user._id,
+            name: 'John Smith'
+          }
         })
         .expect(200)
         .end();
@@ -139,14 +143,14 @@ describe('graphql', function() {
         _id: user._id.toString()
       }, {
         $set: {
-          name: 'Smith Doe'
+          name: 'John Smith'
         }
       });
 
       expect(resp.body).to.be.eql({
         data: {
-          user: {
-            name: 'Smith Doe'
+          updateUser: {
+            name: 'John Smith'
           }
         }
       });

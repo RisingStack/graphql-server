@@ -1,5 +1,6 @@
 import koa from 'koa';
 import Router from 'koa-router';
+import parseBody from 'co-body';
 import mongoose from 'mongoose';
 import {graphql} from 'graphql';
 import schema from './schema';
@@ -16,6 +17,12 @@ routes.get('/data', function* () {
   var query = this.query.query;
 
   this.body = yield graphql(schema, query);
+});
+
+routes.post('/data', function* () {
+  var payload = yield parseBody(this);
+
+  this.body = yield graphql(schema, payload.query, '', payload.params);
 });
 
 app.use(routes.middleware());
