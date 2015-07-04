@@ -1,2 +1,7 @@
 require('babel/register');
-require('./client');
+
+var debug = require('debug');
+debug.enable('client*');
+
+require('./query');
+require('./mutation');

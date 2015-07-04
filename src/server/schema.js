@@ -6,6 +6,7 @@ import {
   GraphQLList
 } from 'graphql/lib/type';
 
+import co from 'co';
 import User from './user';
 
 /**
@@ -71,6 +72,39 @@ var schema = new GraphQLSchema({
           var projections = getProjection(fieldASTs);
           return User.findById(id, projections);
         }
+      }
+    }
+  }),
+
+  // mutation
+  mutation: new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
+      user: {
+        type: userType,
+        args: {
+          id: {
+            name: 'id',
+            type: GraphQLString
+          },
+          name: {
+            name: 'name',
+            type: GraphQLString
+          }
+        },
+        resolve: (obj, {id, name}, source, fieldASTs) => co(function *() {
+          var projections = getProjection(fieldASTs);
+
+          yield User.update({
+            _id: id
+          }, {
+            $set: {
+              name: name
+            }
+          });
+
+          return yield User.findById(id, projections);
+        })
       }
     }
   })

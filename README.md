@@ -12,6 +12,24 @@ user(id: "1") {
 }
 ```
 
+**Example response:**
+```json
+{
+  "data": {
+    "user": {
+      "name": "John Doe",
+      "friends": [
+        {
+          "name": "Friend One"
+        },
+        {
+          "name": "Friend Two"
+        }]
+      }
+    }
+  }
+```
+
 ## Used technologies
 
 * GraphQL
