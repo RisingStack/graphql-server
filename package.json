@@ -18,6 +18,7 @@
     "debug": "^2.2.0",
     "graphql": "^0.1.0",
     "koa": "^0.21.0",
+    "koa-qs": "^2.0.0",
     "koa-router": "^5.1.1",
     "mongoose": "^4.0.6",
     "superagent": "^1.2.0"

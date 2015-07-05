@@ -12,8 +12,7 @@ var User = mongoose.model('User');
 
 describe('graphql', function() {
   describe('query', function() {
-
-    it('should return with user by id', function*() {
+    it('should return with user by id for shorthand query', function*() {
       var user = new User({
         name: 'John Doe'
       });
@@ -30,7 +29,10 @@ describe('graphql', function() {
               name
             }
           }
-          `
+          `,
+          params: {
+            userId: user._id.toString()
+          }
         })
         .expect(200)
         .end();
@@ -48,7 +50,7 @@ describe('graphql', function() {
       });
     });
 
-    it('should return with user by id with friends', function*() {
+    it('should return with user by id with friends for query with parmams', function*() {
       var friend1 = new User({
         name: 'Friend One'
       });
@@ -71,15 +73,18 @@ describe('graphql', function() {
         .get('/data')
         .query({
           query: `
-          {
-            user(id: "${user._id}") {
+          query getUser($userId: String!) {
+            user(id: $userId) {
               name
               friends {
                 name
               }
             }
           }
-          `
+          `,
+          params: {
+            userId: user._id.toString()
+          }
         })
         .expect(200)
         .end();
@@ -105,6 +110,22 @@ describe('graphql', function() {
         }
       });
     });
+
+    it('should handle bad queries', function*() {
+      yield request(server.listen())
+        .get('/data')
+        .query({
+          query: `
+          query {
+            user {
+              name
+            }
+          }
+          `
+        })
+        .expect(400)
+        .end();
+    });
   });
 
   describe('mutation', function() {
@@ -125,7 +146,7 @@ describe('graphql', function() {
         .post('/data')
         .send({
           query: `
-          mutation M($userId: String! $name: String!) {
+          mutation updateUser($userId: String! $name: String!) {
             updateUser(id: $userId name: $name) {
               name
             }
