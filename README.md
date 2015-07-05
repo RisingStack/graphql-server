@@ -30,6 +30,15 @@ user(id: "1") {
   }
 ```
 
+**Example GraphQL mutation:**
+```
+mutation updateUser($userId: String! $name: String!) {
+  updateUser(id: $userId name: $name) {
+    name
+  }
+}
+```
+
 ## Used technologies
 
 * GraphQL
