@@ -50,7 +50,7 @@ describe('graphql', function() {
       });
     });
 
-    it('should return with user by id with friends for query with parmams', function*() {
+    it('should return with user by id with friends for query with params', function*() {
       var friend1 = new User({
         name: 'Friend One'
       });
