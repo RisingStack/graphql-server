@@ -50,11 +50,20 @@ mutation updateUser($userId: String! $name: String!) {
 
 You need `iojs` or >= `Node.js` v0.12.x
 
-### server
+### install dependencies
+
 ```
 npm install
-npm start
+```
 
+### seed database
+```
+npm run seed
+```
+
+### start server
+```
+npm start
 ```
 
 ### client
