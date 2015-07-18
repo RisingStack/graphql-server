@@ -66,7 +66,7 @@ npm run seed
 npm start
 ```
 
-### client
+### run client
 ```
 npm run client
 ```
