@@ -47,7 +47,7 @@ mongoose.connection.collections['users'].drop( function(err) {
       console.log('Seed data created.');
     }
 
-    process.exit()
+    process.exit();
 
   });
 
