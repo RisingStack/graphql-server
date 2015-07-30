@@ -1,6 +1,8 @@
 # graphql-server
 [ ![Codeship Status for RisingStack/graphql-server](https://codeship.com/projects/434da740-03bb-0133-00c5-7a6771ab2ee8/status?branch=master)](https://codeship.com/projects/89250)  
-GraphQL server with Mongoose (MongoDB) and Node.js  
+GraphQL server with Mongoose (MongoDB) and Node.js
+
+## Like this? Check out our GraphQL ORM: [graffiti](https://github.com/RisingStack/graffiti)
 
 **Example GraphQL query:**
 ```
