@@ -3,6 +3,7 @@ import Debug from 'debug';
 
 var debug = new Debug('client:mutation');
 var userId = '559645cd1a38532d14349246';
+var deleteId = '559645cd1a38532d14349242'
 var names = ['Doe', 'Smith', 'Winston', 'Lee', 'Foo', 'Bar'];
 var name = names[Math.floor(Math.random() * names.length)];
 
@@ -43,12 +44,12 @@ request
     }
     `,
     params: {
-      name: 'Randy'
+      name: 'Wedge'
     }
   })
   .end(function (err, res) {
     debug(err || res.body);
-    debug('friends', res.body);
+    debug('created', res.body);
   });
 
 request
@@ -65,10 +66,10 @@ request
     }
     `,
     params: {
-      userId: '55bc19a2658fa5be4990f532'
+      userId: deleteId
     }
   })
   .end(function (err, res) {
     debug(err || res.body);
-    debug('friends', res.body);
+    debug('deleted r2d2', res.body);
   });
