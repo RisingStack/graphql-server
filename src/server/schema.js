@@ -4,7 +4,7 @@ import {
   GraphQLSchema,
   GraphQLString,
   GraphQLList
-} from 'graphql/lib/type';
+} from 'graphql/type';
 
 import co from 'co';
 import User from './user';
