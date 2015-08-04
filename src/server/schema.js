@@ -80,6 +80,38 @@ var schema = new GraphQLSchema({
   mutation: new GraphQLObjectType({
     name: 'Mutation',
     fields: {
+      createUser: {
+        type: userType,
+        args: {
+          name: {
+            name: 'name',
+            type: GraphQLString
+          }
+        },
+        resolve: (obj, {name}, source, fieldASTs) => co(function *() {
+          var projections = getProjection(fieldASTs);
+
+          var user = new User();
+          user.name = name;
+
+
+          return yield user.save();
+        })
+      },
+      deleteUser: {
+        type: userType,
+        args: {
+          id: {
+            name: 'id',
+            type: new GraphQLNonNull(GraphQLString)
+          }
+        },
+        resolve: (obj, {id}, source, fieldASTs) => co(function *() {
+          var projections = getProjection(fieldASTs);
+          console.log(id);
+          return yield User.findOneAndRemove({_id: id});
+        })
+      },
       updateUser: {
         type: userType,
         args: {
